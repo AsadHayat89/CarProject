@@ -1,5 +1,5 @@
 class ApiString{
-  static String host="http://192.168.1.2:3000";
+  static String host="http://192.168.1.11:3000";
   static String Register=host+"/RegisterUser";
   static String SignIn=host+"/SignIn";
   static String fetchImage=host+"/GetImage";

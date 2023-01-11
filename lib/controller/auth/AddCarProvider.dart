@@ -22,7 +22,18 @@ class AddCarProvider extends ChangeNotifier{
   var CAtegoriesFocusNode = FocusNode();
   var backgroundFocusNode = FocusNode();
 
+  void uploaddata(Car car){
+    this.ColorCtr.text=car.color.toString();
+    this.backgroundCtr.text=car.background.toString();
+    this.ModelCtr.text=car.model.toString();
+    this.MakeCtr.text=car.make.toString();
+    this.CategoriesCtr.text=car.categories.toString();
+    this.ColorCtr.text=car.color.toString();
+    image=car.imagefile;
+  }
+
   File? image;
+
   Future pickImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -65,15 +76,17 @@ class AddCarProvider extends ChangeNotifier{
 
     //using apis
     String msg = await Services.tryAddCar(user);
+
     // // Returnig responce from api
     if (msg.toLowerCase() == "success") {
       error = true;
       errorText = "Success";
+      return true;
     } else {
       error = true;
       errorText = "Failed";
     }
-    //
+
     // //Clearing all the textEditiors
     this.ColorCtr.clear();
     this.backgroundCtr.clear();
@@ -83,6 +96,6 @@ class AddCarProvider extends ChangeNotifier{
     this.ColorCtr.clear();
 
     notifyListeners();
-    return true;
+    return false;
   }
 }

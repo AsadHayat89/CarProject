@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../../AppConfig/AppColors.dart';
 import '../../widgets/auth_button.dart';
 import '../../widgets/textform_field.dart';
+import '../Dashboard/dashboard.dart';
 import 'Signup.dart';
 
 class Login extends StatelessWidget {
@@ -189,7 +190,7 @@ class Login extends StatelessWidget {
                           fontweight: FontWeight.w500,
                           ButtonText: "Login",
                           fontsize: 14,
-                          onCustomButtonPressed: () {
+                          onCustomButtonPressed: () async{
                             if (context.read<LoginProvider>().emailCtr.text ==
                                 "") {
                               context
@@ -206,8 +207,17 @@ class Login extends StatelessWidget {
                                   .read<LoginProvider>()
                                   .pwdFocusNode
                                   .requestFocus();
-                            } else {
-                              context.read<LoginProvider>().LoginUser();
+                            } else  {
+
+                              bool res=await context.read<LoginProvider>().LoginUser();
+
+                              context.read<LoginProvider>().changeError();
+                              if(res){
+                                Future.delayed(const Duration(milliseconds: 500), () {
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Dashboard()));
+
+                                });
+                              }
                             }
 
                             // Get.off(MyNavigationBar());

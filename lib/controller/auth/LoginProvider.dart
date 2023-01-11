@@ -29,14 +29,13 @@ class LoginProvider extends ChangeNotifier {
   }
 
   void mantainSession() async {
-    Database db =
-        await LiteSolution.dbFactory.openDatabase(LiteSolution.dbPath);
-    // dynamically typed store
-    var User = StoreRef.main();
-    await User.record('Email').put(db, emailCtr.text);
-
-    String title = await User.record('Email').get(db) as String;
-    print("saved data is ${title}");
+    // Database db =
+    //     await LiteSolution.dbFactory.openDatabase(LiteSolution.dbPath);
+    // var User = StoreRef.main();
+    // await User.record('Email').put(db, emailCtr.text);
+    //
+    // String title = await User.record('Email').get(db) as String;
+    // print("saved data is ${title}");
   }
 
   Future<bool> LoginUser() async {
@@ -54,19 +53,25 @@ class LoginProvider extends ChangeNotifier {
     // Returnig responce from api
     if (msg.toLowerCase() == "congragulations") {
       error = true;
-      mantainSession();
       errorText = "Success";
+
+      Map<String,String> map={"UserEmail":emailCtr.text};
+      LiteSolution.StoreAuth(emailCtr.text.toString());
+      return true;
     } else {
-      print("msg ya ha ${msg}");
       error = true;
       errorText = msg;
     }
+
+
 
     //Clearing all the textEditiors
     this.passwordCtr.clear();
     this.emailCtr.clear();
 
+
+
     notifyListeners();
-    return true;
+return false;
   }
 }

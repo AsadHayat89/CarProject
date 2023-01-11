@@ -1,31 +1,4 @@
 import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
-import 'package:carproject/controller/auth/AddCarProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -34,6 +7,7 @@ import '../../../controller/auth/AddCarProvider.dart';
 import '../../AppConfig/AppColors.dart';
 import '../../widgets/auth_button.dart';
 import '../../widgets/textform_field.dart';
+import '../Dashboard/dashboard.dart';
 class Addcars extends StatelessWidget {
   const Addcars({Key? key}) : super(key: key);
 
@@ -431,7 +405,7 @@ class Addcars extends StatelessWidget {
                             fontweight: FontWeight.w500,
                             ButtonText: "Add",
                             fontsize: 14,
-                            onCustomButtonPressed: () {
+                            onCustomButtonPressed: () async{
                               if (context.read<AddCarProvider>().ModelCtr.text ==
                                   "") {
                                 context
@@ -490,7 +464,14 @@ class Addcars extends StatelessWidget {
                                     .requestFocus();
                               }
                               else {
-                                context.read<AddCarProvider>().AddCar();
+                                bool res=await context.read<AddCarProvider>().AddCar();
+                               // Navigator.of(context).push(MaterialPageRoute(builder: (context) => Dashboard()));
+                                if(res){
+                                  Future.delayed(const Duration(milliseconds: 1000), () {
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Dashboard()));
+
+                                  });
+                                }
                               }
 
                               // Get.off(MyNavigationBar());

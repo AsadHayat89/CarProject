@@ -6,21 +6,17 @@ import 'package:provider/provider.dart';
 
 import 'View/Screens/Auth/Login.dart';
 import 'View/Screens/Auth/Signup.dart';
+import 'View/Screens/Auth/Splashscreen.dart';
 import 'View/Screens/Dashboard/dashboard.dart';
 import 'controller/auth/AddCarProvider.dart';
 import 'controller/auth/DashBoardProvider.dart';
+import 'model/Car.dart';
 
 void main() {
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => LoginProvider()),
-        ChangeNotifierProvider(create: (_) => SignUpProvider()),
-        ChangeNotifierProvider(create: (_) => DashProvider()),
-        ChangeNotifierProvider(create: (_) => AddCarProvider()),
-      ],
-      child: MyApp(),
-    ),
+
+      MyApp(),
+    
   );
 }
 
@@ -30,20 +26,31 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-        designSize: const Size(434, 926),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        builder: (context, child) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Flutter Demo',
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
-            ),
-            home: Dashboard(),
-          );
-        });
+    return MultiProvider(
+      providers: [
+
+    ChangeNotifierProvider(create: (_) => LoginProvider()),
+    ChangeNotifierProvider(create: (_) => SignUpProvider()),
+    ChangeNotifierProvider(create: (_) => DashProvider()),
+    ChangeNotifierProvider(create: (_) => AddCarProvider()),
+
+
+      ],
+      child: ScreenUtilInit(
+          designSize: const Size(434, 926),
+          minTextAdapt: true,
+          splitScreenMode: true,
+          builder: (context, child) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Flutter Demo',
+              theme: ThemeData(
+                primarySwatch: Colors.blue,
+              ),
+              home: SplashScreen(),
+            );
+          }),
+    );
   }
 }
 

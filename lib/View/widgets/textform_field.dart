@@ -14,6 +14,7 @@ class CustomTextField extends StatelessWidget {
   GestureTapCallback? onTap;
   bool? enabled = true;
   int? maxLines;
+  String? initialValue;
   String? controlllerType;
   String? hintText;
   TextInputType? keyboardType;
@@ -35,6 +36,7 @@ class CustomTextField extends StatelessWidget {
     @required this.controller,
     @required this.label,
     this.obsecureText,
+    this.initialValue,
     required this.controlllerType,
     required this.hintfontSize,
     required this.focusColor,
@@ -94,7 +96,8 @@ class CustomTextField extends StatelessWidget {
       width: width,
       child: GestureDetector(
         onTap: onTap,
-        child: TextField(
+        child: TextFormField(
+
           focusNode: focusNode,
           maxLength: maxLength,
           autofocus: autoFocus ?? false,
@@ -102,6 +105,8 @@ class CustomTextField extends StatelessWidget {
           maxLines: maxLines ?? 1,
           enabled: enabled,
           onTap: onTap,
+          initialValue: initialValue,
+
           onEditingComplete: () {
             onEditingComplete!();
           },

@@ -1,16 +1,33 @@
 # carproject
 
-A new Flutter project.
+This project will show all the cars avaiable on stock.
 
-## Getting Started
+## Description
 
-This project is a starting point for a Flutter application.
+This project is created for showing cars details to users. User need to create its account and then login to applicaiton.
+After Login user can see all the available cars and can add new cars in this. 
 
-A few resources to get you started if this is your first Flutter project:
+## Backend
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+This project APIs if created in Node.js using moongoose database using multer middleware. I have experince in both flutter 
+and node. I have also developed different projects on node also.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## How to Set Up the Project
+
+This setup include 2 steps:
+
+- Run the APIs on same network
+- Run the flutter project
+
+Node Api need to be run on same network and user need to get the IP of Laptop and replace this Api with localhost in APis.
+and In flutter project You just need to past that APi in APi.dart->Host variable.
+Node v18.12.1
+
+
+Flutter project need to run first and get all the dependencies and make sure Mobile should be connected with same
+network to make apis work well.
+Flutter v3.4.0
+Dart v2.19.0
+
+
+# Best of Luck

@@ -61,10 +61,11 @@ class Services {
     request.fields['RegistrationNo'] = car.registrationNo.toString();
     request.fields['color'] = car.color.toString();
     request.fields['categories'] = car.categories.toString();
+    request.fields['New'] = "0";
     request.fields['backgroundImage'] = car.background.toString();
   print(request);
     http.StreamedResponse response = await request.send();
-
+    print(response.statusCode.toString());
 
     if(response.statusCode==200){
       return "success";
